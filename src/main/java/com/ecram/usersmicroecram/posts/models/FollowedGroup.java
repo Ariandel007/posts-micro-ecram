@@ -40,7 +40,7 @@ public class FollowedGroup implements Serializable {
     @Column(name = "modify_date_utc", length = 255)
     private String modifyDateUtc;
 
-    @Column(name = "id_group", nullable = false)
+    @Column(name = "id_group", nullable = true)
     private Long id_group;
 
     @ManyToOne(fetch = FetchType.LAZY)

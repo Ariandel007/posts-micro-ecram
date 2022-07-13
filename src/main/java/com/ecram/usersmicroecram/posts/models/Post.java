@@ -53,4 +53,7 @@ public class Post implements Serializable {
 
     @OneToMany(mappedBy = "postRelated", fetch = FetchType.LAZY)
     private List<Comment> commentList;
+
+    @OneToMany(mappedBy = "postRelated", fetch = FetchType.LAZY)
+    private List<BlockPost> blockPostList;
 }

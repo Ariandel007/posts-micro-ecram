@@ -38,11 +38,15 @@ public class Comment implements Serializable {
     @Column(name = "modify_date_utc", length = 255)
     private String modifyDateUtc;
 
-    @Column(name = "id_comment", nullable = false)
+    @Column(name = "id_comment", nullable = true)
     private String idComment;
 
     @Column(name = "id_post", nullable = false)
     private String idPost;
+
+    @Lob
+    @Column(name = "content_comment", nullable = false)
+    private String contentComment;
 
     //recursivo porque id_comment referencia a un Comment padre, por eso usamos el referencedColumnName = "id"
     @ManyToOne(fetch = FetchType.LAZY)
