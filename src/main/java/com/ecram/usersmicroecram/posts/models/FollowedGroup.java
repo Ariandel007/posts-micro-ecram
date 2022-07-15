@@ -19,9 +19,6 @@ public class FollowedGroup implements Serializable {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "description", nullable = true, length = 255)
-    private String description;
-
     @Column(name = "permision_group", nullable = true, length = 255)
     private String permisionGroup;
 
