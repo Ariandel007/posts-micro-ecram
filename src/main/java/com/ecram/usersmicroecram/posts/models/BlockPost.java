@@ -19,7 +19,7 @@ public class BlockPost implements Serializable {
     private String type;
 
     @Column(name = "id_post", nullable = false)
-    private String idPost;
+    private Long idPost;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK

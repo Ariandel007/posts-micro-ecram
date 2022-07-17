@@ -18,7 +18,7 @@ public class Comment implements Serializable {
     private Long id;
 
     @Column(name = "id_user", nullable = false)
-    private String idUser;
+    private Long idUser;
 
     @Column(name = "like_number", nullable = false)
     private Long likeNumber;
@@ -39,10 +39,10 @@ public class Comment implements Serializable {
     private String modifyDateUtc;
 
     @Column(name = "id_comment", nullable = true)
-    private String idComment;
+    private Long idComment;
 
     @Column(name = "id_post", nullable = false)
-    private String idPost;
+    private Long idPost;
 
     @Lob
     @Column(name = "content_comment", nullable = false)

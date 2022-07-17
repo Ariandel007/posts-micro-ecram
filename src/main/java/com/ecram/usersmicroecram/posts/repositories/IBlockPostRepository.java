@@ -1,8 +1,8 @@
 package com.ecram.usersmicroecram.posts.repositories;
 
-import org.springframework.cglib.core.Block;
+import com.ecram.usersmicroecram.posts.models.BlockPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IBlockPostRepository extends JpaRepository<Block, Long> {
+public interface IBlockPostRepository extends JpaRepository<BlockPost, Long> {
 
 }

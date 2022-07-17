@@ -38,10 +38,10 @@ public class DataBlockPost implements Serializable {
     private boolean withBackground = false;
 
     @Column(name = "id_block_posts", nullable = false)
-    private String idBlockPost;
+    private Long idBlockPost;
 
     @Column(name = "id_file_block_posts", nullable = true)
-    private String idFileBlockPost;
+    private Long idFileBlockPost;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_block_posts", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
