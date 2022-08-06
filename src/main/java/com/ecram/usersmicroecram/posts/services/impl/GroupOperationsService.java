@@ -2,7 +2,6 @@ package com.ecram.usersmicroecram.posts.services.impl;
 
 import com.ecram.usersmicroecram.posts.client.IUserClientRest;
 import com.ecram.usersmicroecram.posts.dtos.request.GroupToCreateDto;
-import com.ecram.usersmicroecram.posts.models.FollowedGroup;
 import com.ecram.usersmicroecram.posts.models.Group;
 import com.ecram.usersmicroecram.posts.services.ICloudinaryService;
 import com.ecram.usersmicroecram.posts.services.IFollowedGroupService;
@@ -11,8 +10,11 @@ import com.ecram.usersmicroecram.posts.services.IGroupService;
 import com.ecram.usersmicroecram.posts.utils.PermissionGroup;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+@Service
 public class GroupOperationsService implements IGroupOperationsService {
 
     private final ICloudinaryService cloudinaryService;
@@ -35,6 +37,7 @@ public class GroupOperationsService implements IGroupOperationsService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public Group createGroup(String username, MultipartFile fileLogo, MultipartFile fileBanner, GroupToCreateDto group) {
         Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
         String urlFileLogo = "/assets/default_url_logo.png";

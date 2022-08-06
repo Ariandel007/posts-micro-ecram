@@ -1,0 +1,10 @@
+cloudinaryParams:
+  cloudName: ${CLOUDINARY_CLOUDNAME}
+  apiKey: ${CLOUDINARY_APIKEY}
+  apiSecret: ${CLOUDINARY_APISECRET}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB

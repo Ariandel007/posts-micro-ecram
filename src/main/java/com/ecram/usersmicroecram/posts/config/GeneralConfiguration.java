@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Configuration
 public class GeneralConfiguration {
-    @Bean
+    @Bean(name = "cloudinaryConfig")
     public Cloudinary cloudinaryConfig() {
         Cloudinary cloudinary = null;
         Map<String, String> config = new HashMap<>();
