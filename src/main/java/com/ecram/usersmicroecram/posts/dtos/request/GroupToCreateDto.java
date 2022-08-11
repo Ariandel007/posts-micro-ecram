@@ -19,10 +19,4 @@ public class GroupToCreateDto {
     @Column(name = "description", nullable = true, length = 255)
     private String description;
 
-    @Column(name = "logo_url", nullable = true, length = 255)
-    private String logoUrl;
-
-    @Column(name = "banner_url", nullable = true, length = 255)
-    private String bannerUrl;
-
 }
