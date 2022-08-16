@@ -3,7 +3,7 @@ package com.ecram.usersmicroecram.posts.services.impl;
 import com.ecram.usersmicroecram.posts.client.IUserClientRest;
 import com.ecram.usersmicroecram.posts.dtos.request.GroupToCreateDto;
 import com.ecram.usersmicroecram.posts.models.Group;
-import com.ecram.usersmicroecram.posts.services.ICloudinaryService;
+import com.ecram.usersmicroecram.posts.services.IUploadToCloudService;
 import com.ecram.usersmicroecram.posts.services.IFollowedGroupService;
 import com.ecram.usersmicroecram.posts.services.IGroupOperationsService;
 import com.ecram.usersmicroecram.posts.services.IGroupService;
@@ -17,19 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class GroupOperationsService implements IGroupOperationsService {
 
-    private final ICloudinaryService cloudinaryService;
+    private final IUploadToCloudService uploadToCloudService;
     private final IGroupService groupService;
     private final IUserClientRest userClientRest;
     private final IFollowedGroupService followedGroupService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public GroupOperationsService(ICloudinaryService cloudinaryService,
+    public GroupOperationsService(IUploadToCloudService uploadToCloudService,
                                   IGroupService groupService,
                                   IUserClientRest userClientRest,
                                   IFollowedGroupService followedGroupService,
                                   ModelMapper modelMapper) {
-        this.cloudinaryService = cloudinaryService;
+        this.uploadToCloudService = uploadToCloudService;
         this.groupService = groupService;
         this.userClientRest = userClientRest;
         this.followedGroupService = followedGroupService;
@@ -43,10 +43,10 @@ public class GroupOperationsService implements IGroupOperationsService {
         String urlFileLogo = "/assets/default_url_logo.png";
         String urlFileBanner = "/assets/default_banner.png";
         if(fileLogo != null) {
-            urlFileLogo = this.cloudinaryService.uploadFileToCloudinary(fileLogo);
+            urlFileLogo = this.uploadToCloudService.uploadFileToCloudinary(fileLogo);
         }
         if(fileBanner != null) {
-            urlFileBanner = this.cloudinaryService.uploadFileToCloudinary(fileBanner);
+            urlFileBanner = this.uploadToCloudService.uploadFileToCloudinary(fileBanner);
         }
         Group groupToSave = this.modelMapper.map(group, Group.class);
         groupToSave.setLogoUrl(urlFileLogo);

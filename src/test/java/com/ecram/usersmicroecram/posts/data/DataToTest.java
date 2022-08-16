@@ -2,7 +2,13 @@ package com.ecram.usersmicroecram.posts.data;
 
 import com.ecram.usersmicroecram.posts.dtos.request.GroupToCreateDto;
 import com.ecram.usersmicroecram.posts.models.Group;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Instant;
 
 public class DataToTest {
@@ -61,5 +67,19 @@ public class DataToTest {
 
         return groupToSave;
     }
+
+    public static MockMultipartFile getMockMultipartFile() throws IOException {
+        File uploadFile = new File("src/test/resources/static/file.jpeg");
+        FileInputStream imageFile =  new FileInputStream(uploadFile);
+
+        return new MockMultipartFile(
+                "file.jpeg",
+                "file.jpeg",
+                MediaType.IMAGE_JPEG_VALUE,
+                imageFile
+        );
+    }
+
+    public static String mockUrlCloudinary = "/cloudinary.com/hashimage";
 
 }

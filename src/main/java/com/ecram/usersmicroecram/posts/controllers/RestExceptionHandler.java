@@ -1,6 +1,7 @@
 package com.ecram.usersmicroecram.posts.controllers;
 
 import com.ecram.usersmicroecram.posts.exceptions.ErrorConvertMultiPart;
+import com.ecram.usersmicroecram.posts.exceptions.ErrorUploadToCloudinary;
 import com.ecram.usersmicroecram.posts.exceptions.GeneralBodyExceptionHandler;
 import com.ecram.usersmicroecram.posts.exceptions.GeneralException;
 import org.springframework.core.Ordered;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value= { ErrorConvertMultiPart.class })
+    @ExceptionHandler(value= { ErrorConvertMultiPart.class, ErrorUploadToCloudinary.class})
     protected ResponseEntity<Object> internalServerErrpr(GeneralException ex, WebRequest request) {
         return handleExceptionInternal(
                 ex,

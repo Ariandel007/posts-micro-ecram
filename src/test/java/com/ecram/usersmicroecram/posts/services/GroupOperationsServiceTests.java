@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class GroupOperationsServiceTests {
 
     @MockBean
-    ICloudinaryService cloudinaryService;
+    IUploadToCloudService uploadToCloudService;
 
     @MockBean
     IGroupService groupService;
@@ -49,7 +48,7 @@ public class GroupOperationsServiceTests {
         Group groupToSave = DataToTest.getGroupToRegisterWhenMultiPartIsNull();
         Group groupSaved = DataToTest.getGroupRegisteredWhenMultiPartIsNull();
         when(this.userClientRest.getUserIdByUsername(any())).thenReturn(ResponseEntity.ok().body(2L));
-        when(this.cloudinaryService.uploadFileToCloudinary(any())).thenReturn("/cloudinary.com/hashimage");
+        when(this.uploadToCloudService.uploadFileToCloudinary(any())).thenReturn(DataToTest.mockUrlCloudinary);
         when(this.modelMapper.map(group, Group.class)).thenReturn(groupToSave);
         when(this.groupService.saveGroup(any())).thenReturn(groupSaved);
         when(this.followedGroupService.saveFollowedGroup(any(), any(), any())).thenReturn(null);

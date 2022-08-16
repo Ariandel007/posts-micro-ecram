@@ -2,21 +2,17 @@ package com.ecram.usersmicroecram.posts.services.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.ecram.usersmicroecram.posts.exceptions.ErrorConvertMultiPart;
+import com.ecram.usersmicroecram.posts.exceptions.ErrorUploadToCloudinary;
 import com.ecram.usersmicroecram.posts.services.ICloudinaryService;
 import com.ecram.usersmicroecram.posts.utils.MessageErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Map;
 
 @Service
 public class CloudinaryService implements ICloudinaryService {
-
     private final Cloudinary cloudinaryConfig;
 
     @Autowired
@@ -25,27 +21,11 @@ public class CloudinaryService implements ICloudinaryService {
     }
 
     @Override
-    public String uploadFileToCloudinary(MultipartFile multipartFile) {
+    public Map uploadFileToCloudinary(File fileToUpload) {
         try {
-            File uploadedFile = convertMultiPartToFile(multipartFile);
-            Map uploadResult = cloudinaryConfig.uploader().upload(uploadedFile, ObjectUtils.emptyMap());
-            boolean isDeleted = uploadedFile.delete();
-
-            if (isDeleted){
-                System.out.println("Se elimino el archivo satisfactoriamente");
-            }else
-                System.out.println("El archivo no existe");
-            return  uploadResult.get("url").toString();
+            return this.cloudinaryConfig.uploader().upload(fileToUpload, ObjectUtils.emptyMap());
         } catch (Exception e) {
-            throw new ErrorConvertMultiPart(MessageErrors.ERROR_FILE_CONVERTER_MSG, MessageErrors.ERROR_FILE_CONVERTER_CODE);
+            throw new ErrorUploadToCloudinary(MessageErrors.ERROR_FILE_UPLOAD_MSG, MessageErrors.ERROR_FILE_UPLOAD_CODE);
         }
-    }
-
-    private File convertMultiPartToFile(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
     }
 }
