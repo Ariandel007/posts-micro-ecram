@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("v1/groups")
 public class GroupController {
-    private IGroupOperationsService groupOperationsService;
+    private final IGroupOperationsService groupOperationsService;
 
     @Autowired
     public GroupController(IGroupOperationsService groupOperationsService) {
