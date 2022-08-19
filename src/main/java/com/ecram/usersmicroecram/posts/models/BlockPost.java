@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,6 +21,9 @@ public class BlockPost implements Serializable {
 
     @Column(name = "id_post", nullable = false)
     private Long idPost;
+
+    @OneToMany(mappedBy = "blockPostRelated", fetch = FetchType.LAZY)
+    private List<DataBlockPost> dataBlockPostList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
