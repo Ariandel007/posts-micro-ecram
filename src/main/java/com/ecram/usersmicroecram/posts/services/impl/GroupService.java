@@ -5,6 +5,7 @@ import com.ecram.usersmicroecram.posts.repositories.IGroupRepository;
 import com.ecram.usersmicroecram.posts.services.IGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 
@@ -19,6 +20,7 @@ public class GroupService implements IGroupService {
     }
 
     @Override
+    @Transactional
     public Group saveGroup(Group group) {
         Instant today = Instant.now();
 

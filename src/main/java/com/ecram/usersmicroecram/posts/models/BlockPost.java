@@ -13,7 +13,9 @@ public class BlockPost implements Serializable {
     private static final long serialVersionUID = 4002221912401133094L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
+    @SequenceGenerator(name = "seqGen", sequenceName = "block_posts_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(name = "type", nullable = false)
@@ -22,8 +24,9 @@ public class BlockPost implements Serializable {
     @Column(name = "id_post", nullable = false)
     private Long idPost;
 
-    @OneToMany(mappedBy = "blockPostRelated", fetch = FetchType.LAZY)
-    private List<DataBlockPost> dataBlockPostList;
+    //al insertar
+    @OneToMany(mappedBy = "blockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.ALL, CascadeType.REMOVE})
+    private DataBlockPost dataBlockPost;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_post", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK

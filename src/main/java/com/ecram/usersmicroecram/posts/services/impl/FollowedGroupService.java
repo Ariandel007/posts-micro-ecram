@@ -5,6 +5,7 @@ import com.ecram.usersmicroecram.posts.repositories.IFollowedGroupRepository;
 import com.ecram.usersmicroecram.posts.services.IFollowedGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 
@@ -19,6 +20,7 @@ public class FollowedGroupService implements IFollowedGroupService {
     }
 
     @Override
+    @Transactional
     public FollowedGroup saveFollowedGroup(Long idUser, Long idGroup, String permissionGroup) {
         Instant today = Instant.now();
 

@@ -40,15 +40,11 @@ public class DataBlockPost implements Serializable {
     @Column(name = "id_block_posts", nullable = false)
     private Long idBlockPost;
 
-    @Column(name = "id_file_block_posts", nullable = true)
-    private Long idFileBlockPost;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_block_posts", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
     private BlockPost blockPostRelated;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_file_block_posts", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
+    @OneToOne(mappedBy = "dataBlockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private FileBlockPost fileBlockPostRelated;
 
 }
