@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Entity
@@ -25,7 +24,7 @@ public class BlockPost implements Serializable {
     private Long idPost;
 
     //al insertar
-    @OneToMany(mappedBy = "blockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.ALL, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "blockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.ALL, CascadeType.REMOVE})
     private DataBlockPost dataBlockPost;
 
     @ManyToOne(fetch = FetchType.LAZY)
