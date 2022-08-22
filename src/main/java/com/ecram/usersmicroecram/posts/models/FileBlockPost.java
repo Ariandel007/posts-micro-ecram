@@ -18,10 +18,10 @@ public class FileBlockPost  implements Serializable {
     @Column(name = "url", nullable = true)
     private String url;
 
-    @Column(name = "id_data_block_post", nullable = false)
-    private Long idDataBlockPost;
+//    @Column(name = "id_data_block_post", nullable = false)
+//    private Long idDataBlockPost;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_data_block_post", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
+    @JoinColumn(name = "id_data_block_post")//insertable=false, updatable=false si id_data_block_post esta siendo usado como el FK en el mapeo
     private DataBlockPost dataBlockPostRelated;
 }

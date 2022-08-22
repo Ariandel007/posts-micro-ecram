@@ -11,7 +11,7 @@ public class DataBlockPostDto {
     private boolean withBorder = false;
     private boolean stretched = false;
     private boolean withBackground = false;
-    private Long idBlockPost;
-    private Long idFileBlockPost;
+//    private Long idBlockPost;
+//    private Long idFileBlockPost;
     private FileBlockPostDto fileBlockPostDto;
 }

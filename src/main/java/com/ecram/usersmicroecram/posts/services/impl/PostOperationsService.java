@@ -44,7 +44,7 @@ public class PostOperationsService implements IPostOperationsService {
     @Override
     @Transactional
     public PostCreatedDto createPost(String username, PostToCreateDto postToCreateDto) {
-        //TODO: Traer id de usuario
+        // Traer id de usuario
         Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
 
         List<BlockPostToCreateDto> blockPostToCreateDtoList = postToCreateDto.getBlockPostToCreateDtoList();
@@ -55,7 +55,7 @@ public class PostOperationsService implements IPostOperationsService {
         postToSave.setBlockPostList(null);
         Post postCreated = this.postService.savePost(postToSave);
 
-        //TODO: mapear y guardar BlockPostToCreate(con fe guarda todo)
+        //mapear y guardar BlockPostToCreate(con fe guarda todo)
 
         List<BlockPost> blockPostListToSave = blockPostToCreateDtoList.stream().map(blockPostToCreateDto -> {
             blockPostToCreateDto.setIdPost(postCreated.getId());
@@ -63,10 +63,11 @@ public class PostOperationsService implements IPostOperationsService {
             if(blockPostToCreateDto.getDataBlockPostDto() != null) {
                 DataBlockPost dataBlockPostToSave =
                         this.modelMapper.map(blockPostToCreateDto.getDataBlockPostDto(), DataBlockPost.class);
-                FileBlockPost fileBlockPostToSave =
-                        this.modelMapper.map(blockPostToCreateDto.getDataBlockPostDto().getFileBlockPostDto(), FileBlockPost.class);
-
-                dataBlockPostToSave.setFileBlockPostRelated(fileBlockPostToSave);
+                if(blockPostToCreateDto.getDataBlockPostDto().getFileBlockPostDto() != null) {
+                    FileBlockPost fileBlockPostToSave =
+                            this.modelMapper.map(blockPostToCreateDto.getDataBlockPostDto().getFileBlockPostDto(), FileBlockPost.class);
+                    dataBlockPostToSave.setFileBlockPostRelated(fileBlockPostToSave);
+                }
                 blockPostToSave.setDataBlockPost(dataBlockPostToSave);
             }
 

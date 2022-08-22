@@ -16,10 +16,10 @@ public class DataBlockPost implements Serializable {
     private Long id;
 
     @Lob
-    @Column(name = "text", nullable = false)
+    @Column(name = "text", nullable = true)
     private String text;
 
-    @Column(name = "level", nullable = false)
+    @Column(name = "level", nullable = true)
     private Short level;
 
     @Column(name = "position", nullable = true)
@@ -28,23 +28,27 @@ public class DataBlockPost implements Serializable {
     @Column(name = "caption", nullable = true, length = 255)
     private String caption;
 
-    @Column(name = "with_border", nullable = false)
+    @Column(name = "with_border", nullable = true)
     private boolean withBorder = false;
 
-    @Column(name = "stretched", nullable = false)
+    @Column(name = "stretched", nullable = true)
     private boolean stretched = false;
 
-    @Column(name = "with_background", nullable = false)
+    @Column(name = "with_background", nullable = true)
     private boolean withBackground = false;
 
-    @Column(name = "id_block_posts", nullable = false)
-    private Long idBlockPost;
+//    @Column(name = "id_block_posts", nullable = false)
+//    private Long idBlockPost;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_block_posts", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
+    @JoinColumn(name = "id_block_posts")//insertable=false, updatable=false si id_block_posts esta siendo usado como el FK en el mapeo
     private BlockPost blockPostRelated;
 
     @OneToOne(mappedBy = "dataBlockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private FileBlockPost fileBlockPostRelated;
 
+    public void setFileBlockPostRelated(FileBlockPost fileBlockPostRelated) {
+        this.fileBlockPostRelated = fileBlockPostRelated;
+        this.fileBlockPostRelated.setDataBlockPostRelated(this);
+    }
 }

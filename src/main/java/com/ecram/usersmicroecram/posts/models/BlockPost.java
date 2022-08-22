@@ -24,10 +24,15 @@ public class BlockPost implements Serializable {
     private Long idPost;
 
     //al insertar
-    @OneToOne(mappedBy = "blockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.ALL, CascadeType.REMOVE})
+    @OneToOne(mappedBy = "blockPostRelated", fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.REMOVE})
     private DataBlockPost dataBlockPost;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_post", insertable=false, updatable=false)//insertable=false, updatable=false porque idUserApp esta siendo usado como el FK
+    @JoinColumn(name = "id_post", insertable=false, updatable=false)//insertable=false, updatable=false porque id_post esta siendo usado como el FK
     private Post postRelated;
+
+    public void setDataBlockPost(DataBlockPost dataBlockPost) {
+        this.dataBlockPost = dataBlockPost;
+        this.dataBlockPost.setBlockPostRelated(this);
+    }
 }
