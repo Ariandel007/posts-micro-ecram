@@ -1,7 +1,8 @@
 package com.ecram.usersmicroecram.posts.data;
 
-import com.ecram.usersmicroecram.posts.dtos.request.GroupToCreateDto;
-import com.ecram.usersmicroecram.posts.models.Group;
+import com.ecram.usersmicroecram.posts.dtos.request.*;
+import com.ecram.usersmicroecram.posts.dtos.response.PostCreatedDto;
+import com.ecram.usersmicroecram.posts.models.*;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
@@ -10,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataToTest {
 
@@ -81,5 +84,69 @@ public class DataToTest {
     }
 
     public static String mockUrlCloudinary = "/cloudinary.com/hashimage";
+
+    public static PostToCreateDto postToCreateDto() {
+        PostToCreateDto postToCreateDto = new PostToCreateDto();
+        BlockPostToCreateDto blockPostToCreateDto = new BlockPostToCreateDto();
+        DataBlockPostDto dataBlockPostDto = new DataBlockPostDto();
+
+        FileBlockPostDto fileBlockPostDto = new FileBlockPostDto();
+        fileBlockPostDto.setUrl("https://codex.so/public/app/img/external/codex2x.png");
+
+        dataBlockPostDto.setCaption("");
+        dataBlockPostDto.setWithBackground(false);
+        dataBlockPostDto.setWithBorder(false);
+        dataBlockPostDto.setFileBlockPostDto(fileBlockPostDto);
+
+
+        blockPostToCreateDto.setType("image");
+        blockPostToCreateDto.setDataBlockPostDto(dataBlockPostDto);
+
+        postToCreateDto.setName("Alexander");
+        postToCreateDto.setIdUser(2L);
+        postToCreateDto.setId_group(1L);
+        List<BlockPostToCreateDto> blockPostToCreateDtoList = new ArrayList<>();
+        blockPostToCreateDtoList.add(blockPostToCreateDto);
+        postToCreateDto.setBlockPostToCreateDtoList(blockPostToCreateDtoList);
+
+        return postToCreateDto;
+
+    }
+
+    public static Post postToSave() {
+        Post post = new Post();
+        post.setName("Alexander Post");
+        post.setIdUser(2L);
+        post.setId_group(1L);
+        return post;
+    }
+
+    public static BlockPost blockPostToSave() {
+        BlockPost blockPost = new BlockPost();
+        blockPost.setType("image");
+        return blockPost;
+    }
+
+    public static DataBlockPost dataBlockPost() {
+        DataBlockPost dataBlockPost = new DataBlockPost();
+        dataBlockPost.setCaption("");
+        dataBlockPost.setWithBackground(false);
+        dataBlockPost.setWithBorder(false);
+        return dataBlockPost;
+    }
+
+    public static FileBlockPost fileBlockPost() {
+        FileBlockPost fileBlockPost = new FileBlockPost();
+        fileBlockPost.setUrl("https://codex.so/public/app/img/external/codex2x.png");
+        return fileBlockPost;
+    }
+
+    public static PostCreatedDto postCreatedDto() {
+        PostCreatedDto postCreatedDto = new PostCreatedDto();
+        postCreatedDto.setName("Alexander Post");
+        postCreatedDto.setId_group(1L);
+        postCreatedDto.setIdUser(2L);
+        return postCreatedDto;
+    }
 
 }

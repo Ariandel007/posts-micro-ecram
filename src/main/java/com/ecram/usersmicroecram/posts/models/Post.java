@@ -21,16 +21,16 @@ public class Post implements Serializable {
     private String name;
 
     @Column(name = "like_number", nullable = false)
-    private Long likeNumber;
+    private Long likeNumber = 0L;
 
     @Column(name = "dislike_number", nullable = false)
-    private Long dislikeNumber;
+    private Long dislikeNumber = 0L;
 
     @Column(name = "id_user", nullable = false)
     private Long idUser;
 
     @Column(name = "status", nullable = false, length = 255)
-    private String status;//enable, disabled, in_revision
+    private String status = "enable";//enable, disabled, in_revision
 
     @Column(name = "create_date")
     private Instant createDate;
