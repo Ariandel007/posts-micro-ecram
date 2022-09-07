@@ -3,6 +3,7 @@ package com.ecram.usersmicroecram.posts.services.impl;
 import com.ecram.usersmicroecram.posts.models.Post;
 import com.ecram.usersmicroecram.posts.repositories.IPostRepository;
 import com.ecram.usersmicroecram.posts.services.IPostService;
+import com.ecram.usersmicroecram.posts.utils.PostStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class PostService implements IPostService {
 
         postToSave.setLikeNumber(0L);
         postToSave.setDislikeNumber(0L);
-        postToSave.setStatus("enable");
+        postToSave.setStatus(PostStates.enable.toString());
         postToSave.setCreateDate(today);
         postToSave.setCreateDateUtc(today.toString());
         postToSave.setModifyDate(today);

@@ -19,8 +19,6 @@ public class PostOperationsService implements IPostOperationsService {
 
     private final IPostService postService;
     private final IBlockPostService blockPostService;
-//    private final IDataBlockPostService dataBlockPostService;
-//    private final IFileBlockPostService fileBlockPostService;
     private final IUserClientRest userClientRest;
     private final ModelMapper modelMapper;
 
@@ -28,15 +26,11 @@ public class PostOperationsService implements IPostOperationsService {
     public PostOperationsService(
             IPostService postService,
             IBlockPostService blockPostService,
-//            IDataBlockPostService dataBlockPostService,
-//            IFileBlockPostService fileBlockPostService,
             IUserClientRest userClientRest,
             ModelMapper modelMapper
     ){
         this.postService = postService;
         this.blockPostService = blockPostService;
-//        this.dataBlockPostService = dataBlockPostService;
-//        this.fileBlockPostService = fileBlockPostService;
         this.userClientRest = userClientRest;
         this.modelMapper = modelMapper;
     }
