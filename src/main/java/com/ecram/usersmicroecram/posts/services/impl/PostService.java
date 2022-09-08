@@ -1,5 +1,6 @@
 package com.ecram.usersmicroecram.posts.services.impl;
 
+import com.ecram.usersmicroecram.posts.dtos.response.PostToListDto;
 import com.ecram.usersmicroecram.posts.models.Post;
 import com.ecram.usersmicroecram.posts.repositories.IPostRepository;
 import com.ecram.usersmicroecram.posts.services.IPostService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class PostService implements IPostService {
@@ -34,5 +36,10 @@ public class PostService implements IPostService {
         postToSave.setModifyDateUtc(today.toString());
 
         return this.postRepository.save(postToSave);
+    }
+
+    @Override
+    public List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor) {
+        return this.postRepository.listPostsInUserInboxByGroup(idGroup, cursor);
     }
 }

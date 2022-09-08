@@ -1,11 +1,9 @@
-package com.ecram.usersmicroecram.posts.services;
+package com.ecram.usersmicroecram.posts.repositories;
 
 import com.ecram.usersmicroecram.posts.dtos.response.PostToListDto;
-import com.ecram.usersmicroecram.posts.models.Post;
 
 import java.util.List;
 
-public interface IPostService {
-    Post savePost(Post postToSave);
+public interface ICustomPostRepository {
     List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor);
 }
