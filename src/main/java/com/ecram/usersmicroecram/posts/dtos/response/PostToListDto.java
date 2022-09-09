@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import java.time.Instant;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class PostToListDto {
-    private String id;
+    private Long id;
     private String name;
     private Long likeNumber;
     private Long dislikeNumber;

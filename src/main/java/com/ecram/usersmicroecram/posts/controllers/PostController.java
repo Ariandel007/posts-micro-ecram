@@ -33,13 +33,13 @@ public class PostController {
         return ResponseEntity.ok().body(postCreatedDto);
     }
 
-    @GetMapping("/listPostsInUserInboxByGroup/{idGroup}/{cursor}")
-    ResponseEntity<List<PostToListDto>> listPostsInUserInboxByGroup(
+    @GetMapping("/public/listPostsInGroupInboxByGroup/{idGroup}/{cursor}")
+    ResponseEntity<List<PostToListDto>> listPostsInGroupInboxByGroup(
             @PathVariable(value = "idGroup", required = true) Long idGroup,
             @PathVariable(value = "cursor", required = true) Long cursor
     ) {
-        List<PostToListDto> listPostsInUserInboxByGroup = this.postService.listPostsInUserInboxByGroup(idGroup, cursor);
-        return ResponseEntity.ok().body(listPostsInUserInboxByGroup);
+        List<PostToListDto> listPostsInGroupInboxByGroup = this.postService.listPostsInGroupInboxByGroup(idGroup, cursor);
+        return ResponseEntity.ok().body(listPostsInGroupInboxByGroup);
     }
 
 }

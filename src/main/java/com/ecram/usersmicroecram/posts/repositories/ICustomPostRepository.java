@@ -5,5 +5,5 @@ import com.ecram.usersmicroecram.posts.dtos.response.PostToListDto;
 import java.util.List;
 
 public interface ICustomPostRepository {
-    List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor);
+    List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor);
 }

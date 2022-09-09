@@ -10,15 +10,15 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class CustomPostRepositoryImpl implements ICustomPostRepository {
+public class ICustomPostRepositoryImpl implements ICustomPostRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor) {
+    public List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor) {
         StringBuilder jpql = new StringBuilder();
-        jpql.append("SELECT new PostToListDto(");
+        jpql.append("SELECT new com.ecram.usersmicroecram.posts.dtos.response.PostToListDto(");
         jpql.append("p.id, p.name, p.likeNumber, p.dislikeNumber, p.createDate, p.id_group ");
         jpql.append(") ");
         jpql.append("from Post p ");

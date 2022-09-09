@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IPostService {
     Post savePost(Post postToSave);
-    List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor);
+    List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor);
 }

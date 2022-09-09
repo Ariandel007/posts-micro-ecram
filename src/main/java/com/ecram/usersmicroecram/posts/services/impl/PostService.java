@@ -39,7 +39,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public List<PostToListDto> listPostsInUserInboxByGroup(Long idGroup, Long cursor) {
-        return this.postRepository.listPostsInUserInboxByGroup(idGroup, cursor);
+    public List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor) {
+        return this.postRepository.listPostsInGroupInboxByGroup(idGroup, cursor);
     }
 }
