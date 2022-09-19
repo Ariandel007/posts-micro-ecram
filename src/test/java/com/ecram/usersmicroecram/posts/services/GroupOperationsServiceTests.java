@@ -52,10 +52,11 @@ public class GroupOperationsServiceTests {
         when(this.groupService.saveGroup(any())).thenReturn(groupSaved);
         when(this.followedGroupService.saveFollowedGroup(any(), any(), any())).thenReturn(null);
 
-        String username = "testusername";
+//        String username = "testusername";
+        Long userId = 2L;
 
         //When
-        Group groupGenerated = this.groupOperationsService.createGroup(username, null, null, group);
+        Group groupGenerated = this.groupOperationsService.createGroup(userId, null, null, group);
 
         //Then
         assertEquals(groupGenerated,groupSaved);

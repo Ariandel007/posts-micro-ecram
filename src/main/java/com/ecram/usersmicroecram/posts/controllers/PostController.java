@@ -26,10 +26,10 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("/createPost/{username}")
+    @PostMapping("/createPost/{userId}")
     ResponseEntity<PostCreatedDto> createPost(@RequestBody PostToCreateDto postToCreateDto,
-                                              @PathVariable("username") String username) {
-        PostCreatedDto postCreatedDto = this.postOperationsService.createPost(username, postToCreateDto);
+                                              @PathVariable("userId") Long userId) {
+        PostCreatedDto postCreatedDto = this.postOperationsService.createPost(userId, postToCreateDto);
         return ResponseEntity.ok().body(postCreatedDto);
     }
 

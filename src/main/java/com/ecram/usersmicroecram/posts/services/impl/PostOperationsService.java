@@ -37,9 +37,9 @@ public class PostOperationsService implements IPostOperationsService {
 
     @Override
     @Transactional
-    public PostCreatedDto createPost(String username, PostToCreateDto postToCreateDto) {
+    public PostCreatedDto createPost(Long userId, PostToCreateDto postToCreateDto) {
         // Traer id de usuario
-        Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
+//        Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
 
         List<BlockPostToCreateDto> blockPostToCreateDtoList = postToCreateDto.getBlockPostToCreateDtoList();
 

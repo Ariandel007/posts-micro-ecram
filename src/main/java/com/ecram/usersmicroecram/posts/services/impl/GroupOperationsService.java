@@ -38,8 +38,8 @@ public class GroupOperationsService implements IGroupOperationsService {
 
     @Override
     @Transactional(readOnly = false)
-    public Group createGroup(String username, MultipartFile fileLogo, MultipartFile fileBanner, GroupToCreateDto group) {
-        Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
+    public Group createGroup(Long userId, MultipartFile fileLogo, MultipartFile fileBanner, GroupToCreateDto group) {
+//        Long userId = this.userClientRest.getUserIdByUsername(username).getBody();
         String urlFileLogo = "/assets/default_url_logo.png";
         String urlFileBanner = "/assets/default_banner.png";
         if(fileLogo != null) {

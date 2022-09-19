@@ -65,7 +65,7 @@ public class PostOperationsServiceTests {
         when(this.modelMapper.map(postToSave, PostCreatedDto.class)).thenReturn(postCreatedDto);
 
         //When
-        PostCreatedDto postCreatedDtoInService = this.postOperationsService.createPost("usertest",postToCreateDto);
+        PostCreatedDto postCreatedDtoInService = this.postOperationsService.createPost(2L,postToCreateDto);
 
         //Then
         assertEquals(postCreatedDtoInService,postCreatedDto);

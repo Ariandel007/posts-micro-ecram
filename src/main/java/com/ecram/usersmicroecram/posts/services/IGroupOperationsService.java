@@ -7,5 +7,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 public interface IGroupOperationsService {
-    Group createGroup(String username, MultipartFile fileLogo, MultipartFile fileBanner, GroupToCreateDto group);
+    Group createGroup(Long userId, MultipartFile fileLogo, MultipartFile fileBanner, GroupToCreateDto group);
 }

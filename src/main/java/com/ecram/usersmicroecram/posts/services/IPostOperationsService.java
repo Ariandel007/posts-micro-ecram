@@ -5,5 +5,5 @@ import com.ecram.usersmicroecram.posts.dtos.response.PostCreatedDto;
 import com.ecram.usersmicroecram.posts.models.Post;
 
 public interface IPostOperationsService {
-    PostCreatedDto createPost(String username, PostToCreateDto postToCreateDto);
+    PostCreatedDto createPost(Long userId, PostToCreateDto postToCreateDto);
 }

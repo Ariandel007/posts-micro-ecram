@@ -19,14 +19,14 @@ public class GroupController {
         this.groupOperationsService = groupOperationsService;
     }
 
-    @PostMapping(value = "/createGroup/{username}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/createGroup/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     ResponseEntity<Group> createGroup(@RequestPart String name,
                                       @RequestPart String description,
                                       @RequestPart(value = "fileLogo", required = false) MultipartFile fileLogo,
                                       @RequestPart(value = "fileBanner", required = false) MultipartFile fileBanner,
-                                      @PathVariable("username") String username) {
+                                      @PathVariable("userId") Long userId) {
         GroupToCreateDto groupToCreateDto = new GroupToCreateDto(name,description);
-        Group groupCreated = this.groupOperationsService.createGroup(username, fileLogo, fileBanner, groupToCreateDto);
+        Group groupCreated = this.groupOperationsService.createGroup(userId, fileLogo, fileBanner, groupToCreateDto);
         return ResponseEntity.ok().body(groupCreated);
     }
 
