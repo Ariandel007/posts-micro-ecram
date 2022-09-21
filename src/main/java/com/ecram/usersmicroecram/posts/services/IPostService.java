@@ -8,4 +8,6 @@ import java.util.List;
 public interface IPostService {
     Post savePost(Post postToSave);
     List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor);
+    Post findPost(Long postId);
+
 }

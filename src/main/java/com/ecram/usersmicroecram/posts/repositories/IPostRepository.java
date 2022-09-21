@@ -11,7 +11,7 @@ public interface IPostRepository extends JpaRepository<Post, Long>, ICustomPostR
     @Query(" SELECT p FROM Post p                        " +
            " join fetch p.blockPostList bpl              " +
            " join fetch bpl.dataBlockPost dbp            " +
-           " join fetch dbp.fileBlockPostRelated fbpr    " +
+           " left join fetch dbp.fileBlockPostRelated fbpr    " +
            " WHERE p.id = :postId AND p.status='enable'  ")
     Post findPostData(@Param("postId") Long postId);
 

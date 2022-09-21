@@ -2,7 +2,9 @@ package com.ecram.usersmicroecram.posts.controllers;
 
 import com.ecram.usersmicroecram.posts.dtos.request.PostToCreateDto;
 import com.ecram.usersmicroecram.posts.dtos.response.PostCreatedDto;
+import com.ecram.usersmicroecram.posts.dtos.response.PostFindedDto;
 import com.ecram.usersmicroecram.posts.dtos.response.PostToListDto;
+import com.ecram.usersmicroecram.posts.models.Post;
 import com.ecram.usersmicroecram.posts.services.IPostOperationsService;
 import com.ecram.usersmicroecram.posts.services.IPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,11 @@ public class PostController {
     ) {
         List<PostToListDto> listPostsInGroupInboxByGroup = this.postService.listPostsInGroupInboxByGroup(idGroup, cursor);
         return ResponseEntity.ok().body(listPostsInGroupInboxByGroup);
+    }
+
+    @GetMapping("/public/findPostById/{postId}")
+    ResponseEntity<PostFindedDto> findPostById(@PathVariable(value = "postId", required = true) Long postId) {
+        return ResponseEntity.ok().body(this.postOperationsService.findPostById(postId));
     }
 
 }

@@ -4,6 +4,7 @@ import com.ecram.usersmicroecram.posts.client.IUserClientRest;
 import com.ecram.usersmicroecram.posts.dtos.request.BlockPostToCreateDto;
 import com.ecram.usersmicroecram.posts.dtos.request.PostToCreateDto;
 import com.ecram.usersmicroecram.posts.dtos.response.PostCreatedDto;
+import com.ecram.usersmicroecram.posts.dtos.response.PostFindedDto;
 import com.ecram.usersmicroecram.posts.models.*;
 import com.ecram.usersmicroecram.posts.services.*;
 import org.modelmapper.ModelMapper;
@@ -71,5 +72,10 @@ public class PostOperationsService implements IPostOperationsService {
         this.blockPostService.saveManyBlockPost(blockPostListToSave);
 
         return this.modelMapper.map(postCreated, PostCreatedDto.class);
+    }
+
+    @Override
+    public PostFindedDto findPostById(Long postId) {
+        return this.modelMapper.map(this.postService.findPost(postId), PostFindedDto.class);
     }
 }

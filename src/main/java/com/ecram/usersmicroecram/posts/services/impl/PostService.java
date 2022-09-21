@@ -39,7 +39,14 @@ public class PostService implements IPostService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<PostToListDto> listPostsInGroupInboxByGroup(Long idGroup, Long cursor) {
         return this.postRepository.listPostsInGroupInboxByGroup(idGroup, cursor);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Post findPost(Long postId) {
+        return this.postRepository.findPostData(postId);
     }
 }
